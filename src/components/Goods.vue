@@ -7,7 +7,7 @@
       <div ref="goodsLeft" class="goodsLeft">
         <ul>
           <li class="navItem" :class="{active:index === nowIndex}" v-for="(item,index) in allInfo"
-              @click="updataRight(index,$event)"><span>{{item.name}}</span>
+              ><span @click="updataRight($event,index)">{{item.name}}</span>
           </li>
         </ul>
       </div>
@@ -66,20 +66,12 @@
       })
     },
     methods: {
-      updataRight(index,event) {
-        if (!event._constructed) {
-          return false;
+      updataRight(event,index) {
+        if (!('ontouchstart' in window) && event._constructed) {
+          return;
         }
         this.nowIndex = index;
         this.index = index;
-        /*let categoryLen = this.allInfo.length;
-        for (let i = 0; i < categoryLen; i++) {
-          if (i === index) {
-            this.activeFlag[i] = true;
-          } else {
-            this.activeFlag[i] = false;
-          }
-        }*/
       },
       updataPrice(price) {
         console.log(price);
@@ -88,14 +80,14 @@
       }
     },
     updated(event) {
-      let categoryLen = this.$store.state.allInfo.length;
+      /*let categoryLen = this.$store.state.allInfo.length;
       for (let i = 0; i < categoryLen; i++) {
         if (i === 0) {
           this.activeFlag[i] = true;
         } else {
           this.activeFlag[i] = false;
         }
-      }
+      }*/
       this.$nextTick(function () {
         this.menuScroll = new BScroll(this.$refs.goodsLeft, {click:true});
       });
@@ -150,8 +142,8 @@
     width: 100%;
     display: inline-block;
     flex: 1;
-    /*overflow: auto;*/
-    overflow: hidden;
+    overflow: auto;
+    /*overflow: hidden;*/
   }
 
   .navItem {
@@ -160,12 +152,13 @@
     margin: 0 auto;
     font-size: 12px;
     text-align: center;
-    line-height: 25px;
+    line-height: 50px;
     background: #f5f5f7;
   }
 
   .goodsLeft .active {
     color: red;
+    background:rgba(255,255,255,0.5)
   }
 
   .foodInfo {

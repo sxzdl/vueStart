@@ -13,11 +13,19 @@ const actions = {
   updateAllPrice({commit},price) {
     commit('updateAllPrice',price);
   },
-  updateAllCountInc({commit}) {
-    commit('updateAllCountInc');
+  updateAllCountInc({commit},option) {
+    if (!('ontouchstart' in window) && option.event._constructed) {
+      return;
+    }
+    commit('updateAllCountInc',option);
+    // commit('updateFoodsArr',price,cetIndex,foodIndex);
   },
-  updateAllCountDec({commit}) {
-    commit('updateAllCountDec');
+  updateAllCountDec({commit},option) {
+    if (!('ontouchstart' in window) && option.event._constructed) {
+      return;
+    }
+    commit('updateAllCountDec',option);
+    // commit('updateFoodsArr',price,cetIndex,foodIndex);
   },
   updateAllPriceDec({commit},price) {
     commit('updateAllPriceDec',price)

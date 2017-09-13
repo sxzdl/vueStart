@@ -7,12 +7,15 @@
         </div>
       <div class="right" :class="{active:allPrice}">
         <span>{{message}}</span>
+        <span @click="displayShopCarsDetail()">购物车</span>
       </div>
     </div>
+    <ShopCarsDetail v-show="ShopCarsDetailFlag"></ShopCarsDetail>
   </div>
 </template>
 <script type="text/ecmascript-6">
   import {mapState} from 'vuex'
+  import ShopCarsDetail from './ShopCarsDetail';
   export default {
     /*props:{
       allPrice:{
@@ -29,12 +32,31 @@
       },
       ...mapState({
         allPrice: state => state.allPrice,
-        allCount: state => state.allCount
+        allCount: state => state.allCount,
+        ShopCarsDetailFlag: state => state.ShopCarsDetailFlag
       })
     },
     data() {
       return {
+        /*ShopCarsDetailFlag: false*/
       };
+    },
+    components: {
+      ShopCarsDetail
+    },
+    methods: {
+      displayShopCarsDetail() {
+        if (!this.allCount) {
+          return false;
+        }
+        if (!this.ShopCarsDetailFlag) {
+          // this.ShopCarsDetailFlag = true;
+          this.$store.state.ShopCarsDetailFlag = true;
+        } else {
+          // this.ShopCarsDetailFlag = false;
+          this.$store.state.ShopCarsDetailFlag = false;
+        }
+      }
     }
   }
 </script>
