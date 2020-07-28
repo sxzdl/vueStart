@@ -22,7 +22,7 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
-var appData = require('../dist/static/data.json');
+var appData = require('../static/data.json');
 let allInfo = require('../static/inof.json');
 var seller = appData.seller;
 var comments = appData.comments;
