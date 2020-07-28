@@ -14,9 +14,9 @@ export default new Router({
          name: 'Hello',
          component: Hello
          }*/
-        {path: '*', redirect: '/goods'},
-        {path: '/goods', component: Goods},
-        {path: '/comment', component: Comment},
-        {path: '/detail', component: Detail}
+        {path: '*', redirect: '/vueStart/goods'},
+        {path: '/vueStart/goods', component: Goods},
+        {path: '/vueStart/comment', component: Comment},
+        {path: '/vueStart/detail', component: Detail}
     ]
 })
